@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Chercheur d'emploi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{% static 'login/style.css' %}"> 
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="logo text-center">
+  <h1>Bievenue</h1>
+</div>
+<div class="wrapper">
+  <div class="inner-warpper text-center">
+    <h2 class="title">Chercheur d'emploi</h2>
+    <h5 style="color: red;"> {{ msg  }} </h5>
+    <form action="" method="POST" id="formvalidate">
+        {% csrf_token %}
+      <div class="input-group">
+        
+        <input class="form-control" name="username"  type="text" placeholder="Entrer le nom d'utilisateur" />
+        <span class="lighting"></span>
+      </div>
+      <div class="input-group">
+        <input class="form-control" name="password"  type="password" placeholder="Entrer le mot de passe" />
+        <span class="lighting"></span>
+      </div>
+
+      <button type="submit" value="Submit" >Connecter</button>
+      <div class="clearfix supporter">
+        <div class="pull-left remember-me">
+          <input id="rememberMe" type="checkbox">
+          <label for="rememberMe">Me souvien</label>
+        </div>
+        <a class="forgot pull-right" href="#">Mot de passe oublié</a>
+      </div>
+    </form>
+  </div>
+  <div class="signup-wrapper text-center">
+    <a href="/inscription_chercheur_emploi/">Pas encore inscrit? <span class="text-primary">3jel 3jen hun taftaf</span></a>
+    
+  </div>
+</div>
+
+
+<!-- partial -->
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% extends 'user_navbar.html' %}
+{% block title %} Profile de l'utilisateur {% endblock %}
+{% block home %} active {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+
+            <form class="container mt-4" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Nom</label>
+                        <input type="text" class="form-control mt-2" name="first_name" id="first_name"
+                            value="{{c_emploi.user.first_name}}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Prenom</label>
+                        <input type="text" class="form-control mt-2" name="last_name" id="last_name"
+                        value="{{c_emploi.user.last_name}}" required>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="form-group col-md-12">
+                        <label>Nom d'utilisateur</label>
+                        <input type="text" class="form-control mt-2" name="username" id="username"
+                            value="{{c_emploi.user.username}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label>Email </label>
+                        <input type="email" class="form-control mt-2" name="email" id="email" value="{{c_emploi.user.email}}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Numero telephone </label>
+                        <input type="tel" class="form-control mt-2" name="telephone" id="phone" value="{{c_emploi.telephone}}" required>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label>Sexe</label>
+                        {% if c_emploi.sexe == "Male" %}    
+                        <div >
+                            <Select name="sexe"  class="mt-2" style="border: 1px solid lightgrey; padding: 5px; border-radius: 6px;">
+                                <option value="Male"> Homme </option>
+                                <option value="Female"> Femme </option>
+                            </select>   
+                        </div>
+                        {% else %}
+                        <div >
+                            <Select name="sexe"  class="mt-2" style="border: 1px solid lightgrey; padding: 5px; border-radius: 6px;">
+                                <option value="Female"> Femme </option>
+                                <option value="Male"> Homme </option>
+                                
+                            </select>   
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Profile Photo</label>
+                        <input type="file" class="form-control mt-2" name="image" id="image">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="form-group col-md-12">
+                        <label>Description</label>
+                        <input type="text" class="form-control mt-2" name="description" id="description"
+                             value="{{c_emploi.description}}" style="height:100px; width:400px;"  required> </input>
+                             
+                    </div>
+                </div>
+                {% comment %} <div class="row mt-4">
+                    <div class="form-group col-md-12">
+                        <label>Description</label>
+                       <textarea type="text" name="description" id="description" class="form-control" cols="30" rows="4"
+                         value="{{c_emploi.description}}" readonly ></textarea>
+                    </div>
+                </div> {% endcomment %}
+
+                <input type="submit" value="Submit" class="btn btn-success"  ">
+            </form>
+
+        </div>
+        <div class="col-sm-4 mt-5 text-center">
+            <img src="{{c_emploi.image.url}}" alt="" width="200px" height="200px">
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Le profile a été modifiées avec succées")
+    window.location = "/page_home_chercheur_emploi"
+    {% endif %}
+</script>
+{% endblock %}
